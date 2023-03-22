@@ -11,8 +11,6 @@ import CoreData
 class DataManager {
     static let shared = DataManager()
     private init() {
-        //Singleton
-        
     }
     
     var mainContext: NSManagedObjectContext {
