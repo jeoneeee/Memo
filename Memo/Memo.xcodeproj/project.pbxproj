@@ -17,6 +17,7 @@
 		1A937E1029C34B06005422BF /* MemoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A937E0F29C34B06005422BF /* MemoListTableViewController.swift */; };
 		1A937E1229C354E9005422BF /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A937E1129C354E9005422BF /* ComposeViewController.swift */; };
 		1A937E1429C35D71005422BF /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A937E1329C35D71005422BF /* UIViewController+Alert.swift */; };
+		1A937E3929CAB6CB005422BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A937E3829CAB6CB005422BF /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1A937E0F29C34B06005422BF /* MemoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewController.swift; sourceTree = "<group>"; };
 		1A937E1129C354E9005422BF /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		1A937E1329C35D71005422BF /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		1A937E3829CAB6CB005422BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				1A937E0F29C34B06005422BF /* MemoListTableViewController.swift */,
 				1A937E1129C354E9005422BF /* ComposeViewController.swift */,
 				1A937E1329C35D71005422BF /* UIViewController+Alert.swift */,
+				1A937E3829CAB6CB005422BF /* DetailViewController.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				1A937DFE29C33F84005422BF /* Memo.xcdatamodeld in Sources */,
 				1A937E0C29C34476005422BF /* Model.swift in Sources */,
 				1A937E1429C35D71005422BF /* UIViewController+Alert.swift in Sources */,
+				1A937E3929CAB6CB005422BF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
