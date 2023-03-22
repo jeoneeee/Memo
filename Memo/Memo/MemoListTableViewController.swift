@@ -19,6 +19,9 @@ class MemoListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        DataManager.shared.fetchMemo()
+        tableView.reloadData()
+        
         //tableView에게 목록을 업데이트하라고 알려줌
 //        tableView.reloadData()
 //        print(#function)
@@ -35,7 +38,7 @@ class MemoListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
             if let vc = segue.destination as? DetailViewController {
-                vc.memo = Memo.dummyMemoList[indexPath.row]
+                vc.memo = DataManager.shared.memoList[indexPath.row]
             }
         }
     }
@@ -44,6 +47,7 @@ class MemoListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         token = NotificationCenter.default.addObserver(forName: ComposeViewController.newMemoDidInsert, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
+            
             self?.tableView.reloadData()
         }
 
@@ -59,7 +63,7 @@ class MemoListTableViewController: UITableViewController {
     // tableView가 몇개의 Cell을 표시해야하는지 알 수 있다.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Memo.dummyMemoList.count
+        return DataManager.shared.memoList.count
     }
 
     //tableView가 어떤 디자인으로 표시해야하는지 알 수 있다.
@@ -68,9 +72,9 @@ class MemoListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-        let target = Memo.dummyMemoList[indexPath.row]
+        let target = DataManager.shared.memoList[indexPath.row]
         cell.textLabel?.text = target.content
-        cell.detailTextLabel?.text = formatter.string(from: target.insertDate)
+        cell.detailTextLabel?.text = formatter.string(for: target.insertDate)
 
         return cell
     }
