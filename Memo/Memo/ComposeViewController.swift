@@ -39,6 +39,19 @@ class ComposeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    var willShowToken: NSObjectProtocol?
+    var willHiddenToken: NSObjectProtocol?
+    
+    deinit {
+        if let token = willShowToken {
+            NotificationCenter.default.removeObserver(token)
+        }
+        
+        if let token = willHiddenToken {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,17 +65,47 @@ class ComposeViewController: UIViewController {
         }
         
         memoText.delegate = self
+        
+        willShowToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
+            guard let strongSelf = self else { return }
+            
+            if let frame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let height = frame.cgRectValue.height
+                
+                var inset = strongSelf.memoText.contentInset
+                inset.bottom = height
+                strongSelf.memoText.contentInset = inset
+                
+                inset = strongSelf.memoText.scrollIndicatorInsets
+                inset.bottom = height
+                strongSelf.memoText.scrollIndicatorInsets = inset
+            }
+        })
+        
+        willHiddenToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
+            guard let strongSelf = self else { return }
+            
+            var inset = strongSelf.memoText.contentInset
+            inset.bottom = 0
+            strongSelf.memoText.contentInset = inset
+            
+            inset = strongSelf.memoText.scrollIndicatorInsets
+            inset.bottom = 0
+            strongSelf.memoText.scrollIndicatorInsets = inset
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        memoText.becomeFirstResponder()
         navigationController?.presentationController?.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        memoText.resignFirstResponder()
         navigationController?.presentationController?.delegate = nil
     }
     
