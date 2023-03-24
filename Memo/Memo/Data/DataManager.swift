@@ -8,8 +8,10 @@
 import Foundation
 import CoreData
 
+//싱글톤 = environmentObject
 class DataManager {
     static let shared = DataManager()
+    
     private init() {
     }
     

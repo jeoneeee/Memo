@@ -81,10 +81,12 @@ class ComposeViewController: UIViewController {
                 strongSelf.memoText.scrollIndicatorInsets = inset
             }
         })
-        
+
+        //[weak self] -> OperationQueue의 참조를 약한 참조로 해준다.
+        //NotificationCenter : 집..
+        //notification : 구성원, 사람
         willHiddenToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
             guard let strongSelf = self else { return }
-            
             var inset = strongSelf.memoText.contentInset
             inset.bottom = 0
             strongSelf.memoText.contentInset = inset
